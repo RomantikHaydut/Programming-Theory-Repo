@@ -5,7 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    private float m_moveSpeed;
+    public GameObject hammerPrefab;
+
+    public GameObject ringPrefab;
+
+    public GameObject bombPrefab;
+
+
+    private float m_moveSpeed; // base speed
 
     public float moveSpeed
     {
@@ -16,7 +23,7 @@ public class Player : MonoBehaviour
             // Here we protect base speed.
             if (value<=0)
             {
-                Debug.LogError("Move Speed Less Then 0 Ther is no Movement.");
+                Debug.LogError("Move Speed is Less Then 0 There is no Movement.");
             }
             else
             {
@@ -33,14 +40,19 @@ public class Player : MonoBehaviour
         trnsfrm.position += new Vector3(horizontalInput * Time.deltaTime * m_moveSpeed, 0, verticalInput * Time.deltaTime * m_moveSpeed);
     }
 
-    public void Jump(GameObject player, Rigidbody playerRb,float jumpForce)
+    public void Jump(Rigidbody playerRb,float jumpForce)
     {
-        playerRb.AddRelativeForce(player.transform.up * jumpForce,ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerRb.velocity = new Vector3(0, jumpForce, 0);
+        }
+
     }
 
-    public void FireProjectile(GameObject projectile,Vector3 spawnPos)
+    public virtual void FireProjectile(GameObject projectile,Vector3 spawnPos)
     {
         Instantiate(projectile, spawnPos, projectile.transform.rotation);
     }
+
 
 }
