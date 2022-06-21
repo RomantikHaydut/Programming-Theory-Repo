@@ -26,8 +26,6 @@ public class CameraController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         transform.position = player.transform.position + new Vector3(0,17,-15);
         offSet = transform.position - player.transform.position;
-
-
     }
 
     void FollowPlayer()

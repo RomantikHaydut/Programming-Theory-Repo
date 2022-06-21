@@ -11,6 +11,7 @@ public class Bumerang : ProjectileBase
         damage = 5f;
         GetPlayer();
         direction = -(player.transform.position - transform.position).normalized;
+        Destroy(gameObject, 15f);
     }
 
     
@@ -35,8 +36,4 @@ public class Bumerang : ProjectileBase
         }
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
 }
