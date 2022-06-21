@@ -15,7 +15,7 @@ public class CapsuleController : Player
     {
         rb = GetComponent<Rigidbody>();
         bombPowerup = true;
-        moveSpeed = 1.5f;
+        moveSpeed = 4f;
         jumpForce = 9f;
         shapaName = "Capsule";
     }

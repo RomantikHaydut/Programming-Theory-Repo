@@ -9,7 +9,7 @@ public class Bomb : ProjectileBase
     {
         name = "Bomb";
         damage = 10;
-        effectRadius = 5;
+        effectRadius = 3;
         GetPlayer();
         StartCoroutine(Explosion());
         direction = -(player.transform.position - transform.position);
@@ -19,8 +19,8 @@ public class Bomb : ProjectileBase
     IEnumerator Explosion()
     {
         
-
-        while (Vector3.Distance(player.transform.position, transform.position) <= 5.1f)
+        // Here bomb will move back.
+        while (Vector3.Distance(player.transform.position, transform.position) <= effectRadius*2.5f)
         {
             yield return new WaitForEndOfFrame();
             transform.position += (direction.normalized) * Time.deltaTime* 2.5f;
@@ -28,6 +28,7 @@ public class Bomb : ProjectileBase
 
         yield return new WaitForSeconds(0.2f);
 
+        // Here bomb is getting bigger
         while (transform.localScale.x <= effectRadius)
         {
             yield return new WaitForEndOfFrame();
@@ -38,6 +39,7 @@ public class Bomb : ProjectileBase
 
         yield return new WaitForSeconds(0.2f);
 
+        // Here bomb is explosing ad destroying objects in area
         GameObject[] objectsInArea = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in objectsInArea)

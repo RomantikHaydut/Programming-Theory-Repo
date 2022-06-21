@@ -5,7 +5,6 @@ using UnityEngine;
 public class ProjectileBase : MonoBehaviour
 {
 
-
     protected string name;
 
     protected Vector3 direction;
