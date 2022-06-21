@@ -20,12 +20,12 @@ public class CapsuleController : Player
         shapaName = "Capsule";
     }
 
-    public override void FireProjectile(GameObject projectile)
+    public override void FireProjectile(GameObject projectile,bool takeChild)
     {
         if (bombPowerup)
         {
             projectileSpawnPos = transform.position - transform.forward * 2;
-            base.FireProjectile(projectile);
+            base.FireProjectile(projectile,takeChild);
         }
         
     }
@@ -38,6 +38,6 @@ public class CapsuleController : Player
 
     private void Update()
     {
-        FireProjectile(bombPrefab);
+        FireProjectile(bombPrefab,false);
     }
 }

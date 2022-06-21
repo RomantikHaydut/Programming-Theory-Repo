@@ -21,14 +21,14 @@ public class SphereController : Player
         shapaName = "Sphere";
 
     }
-    public override void FireProjectile(GameObject projectile)
+    public override void FireProjectile(GameObject projectile,bool takeChild)
     {
         if (bumarangPowerup)
         {
             for (int i = 0; i < 4; i++)
             {
                 projectileSpawnPos = transform.position + transform.up/3 + new Vector3(Mathf.Sin(i * 90 * Mathf.Deg2Rad), 0, Mathf.Cos(i * 90 * Mathf.Deg2Rad)) * 2;
-                base.FireProjectile(projectile);
+                base.FireProjectile(projectile,takeChild);
 
             }
         }
@@ -42,6 +42,6 @@ public class SphereController : Player
 
     private void Update()
     {
-        FireProjectile(bumerangPrefab);
+        FireProjectile(bumerangPrefab,false);
     }
 }

@@ -22,12 +22,12 @@ public class CubeController : Player
 
     }
 
-    public override void FireProjectile(GameObject projectile)
+    public override void FireProjectile(GameObject projectile,bool takeChild)
     {
         if (hammerPowerup)
         {
             projectileSpawnPos = transform.position + transform.up * 2 + transform.forward*2.5f;
-            base.FireProjectile(projectile);
+            base.FireProjectile(projectile,takeChild);
         }
     }
     void FixedUpdate()
@@ -38,6 +38,6 @@ public class CubeController : Player
 
     private void Update()
     {
-        FireProjectile(hammerPrefab);
+        FireProjectile(hammerPrefab,true);
     }
 }

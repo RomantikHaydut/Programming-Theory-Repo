@@ -46,11 +46,19 @@ public class Player : MonoBehaviour
 
     }
 
-    public virtual void FireProjectile(GameObject projectile)
+    public virtual void FireProjectile(GameObject projectile,bool makeChild)
     {
         if (Input.GetMouseButtonDown(0))
         {
-           Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation);
+            if (makeChild)
+            {
+                Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation,transform);
+
+            }
+            else
+            {
+                Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation);
+            }
         }
         
     }
