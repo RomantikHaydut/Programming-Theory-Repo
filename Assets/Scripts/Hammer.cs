@@ -22,4 +22,12 @@ public class Hammer : ProjectileBase
     {
         transform.RotateAround(player.transform.position, Vector3.up,90f*Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

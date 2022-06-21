@@ -26,7 +26,7 @@ public class CubeController : Player
     {
         if (hammerPowerup)
         {
-            projectileSpawnPos = transform.position + transform.up * 2 + transform.forward*2.5f;
+            projectileSpawnPos = transform.position + transform.forward*3.5f;
             base.FireProjectile(projectile,takeChild);
         }
     }
