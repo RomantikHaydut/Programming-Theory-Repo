@@ -6,21 +6,38 @@ using UnityEngine;
 public class CubeController : Player
 {
     Rigidbody rb;
-    private float jumpForce = 7;
+    private float jumpForce;
+    public GameObject hammerPrefab;
+
+    private bool hammerPowerup;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
-    public override void Move(Transform trnsfrm)
-    {
+        hammerPowerup = true;
         moveSpeed = 2f;
-        base.Move(trnsfrm);
+        jumpForce = 7;
+        shapaName = "Cube";
+
     }
 
+    public override void FireProjectile(GameObject projectile)
+    {
+        if (hammerPowerup)
+        {
+            projectileSpawnPos = transform.position + transform.up * 2 + transform.forward*2.5f;
+            base.FireProjectile(projectile);
+        }
+    }
     void FixedUpdate()
     {
         Move(transform);
         Jump(rb, jumpForce);
+    }
+
+    private void Update()
+    {
+        FireProjectile(hammerPrefab);
     }
 }

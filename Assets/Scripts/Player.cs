@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    protected private string shapaName;
 
-    public GameObject hammerPrefab;
-
-    public GameObject ringPrefab;
-
-    public GameObject bombPrefab;
+    protected   Vector3 projectileSpawnPos;
 
 
     private float m_moveSpeed; // base speed
@@ -33,7 +30,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public virtual void Move(Transform trnsfrm)
+    public  void Move(Transform trnsfrm)
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -49,9 +46,13 @@ public class Player : MonoBehaviour
 
     }
 
-    public virtual void FireProjectile(GameObject projectile,Vector3 spawnPos)
+    public virtual void FireProjectile(GameObject projectile)
     {
-        Instantiate(projectile, spawnPos, projectile.transform.rotation);
+        if (Input.GetMouseButtonDown(0))
+        {
+           Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation);
+        }
+        
     }
 
 
