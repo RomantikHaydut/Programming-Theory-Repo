@@ -44,7 +44,7 @@ public class Bomb : ProjectileBase
 
         foreach (GameObject enemy in objectsInArea)
         {
-            if (Vector3.Distance(enemy.transform.position, transform.position) <= effectRadius)
+            if (Vector3.Distance(enemy.transform.position, transform.position) <= effectRadius*2)
             {
                 Destroy(enemy.gameObject);
 
