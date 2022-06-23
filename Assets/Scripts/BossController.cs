@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : MonoBehaviour
+public class BossController : EnemyController
 {
     public GameObject[] cylinders;
 
     void Start()
     {
         StartCoroutine(BiggerArms());
+        EventsInStart();
+        Debug.LogError("Boss Health : " + health);
     }
 
     
     void FixedUpdate()
     {
         transform.Rotate(Vector3.up, 90f * Time.deltaTime);
+        FollowPlayer();
     }
 
     IEnumerator BiggerArms()

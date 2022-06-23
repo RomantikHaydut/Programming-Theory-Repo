@@ -33,7 +33,4 @@ public class ProjectileBase : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-
-
-
 }

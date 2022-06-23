@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     private CameraController cam;
 
-    public int level;
+    public static int level;
 
     private Vector3 activePosition;
 

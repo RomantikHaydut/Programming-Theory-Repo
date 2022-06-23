@@ -13,9 +13,16 @@ public class SpawnManager : MonoBehaviour
     private float zRange = 100;
 
     private int enemyCount;
+
+    public static int destroyedEnemyCount;
+
+    public static int level;
+
     void Start()
     {
         enemyCount = 0;
+        destroyedEnemyCount = 0;
+        level = 1;
         InvokeRepeating("SpawnEnemy", 1f, 0.1f);
     }
 
