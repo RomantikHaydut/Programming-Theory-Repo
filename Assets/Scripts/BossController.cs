@@ -25,11 +25,13 @@ public class BossController : EnemyController
         bool getBig = true;
         while (true)
         {
+            float randomSpeed = Random.Range(1.5f, 3);
+            float randomExtendDistance = Random.Range(4, 6);
             if (cylinders[0].transform.localScale.y <= 5.1f && getBig)
             {
                 yield return new WaitForFixedUpdate();
-                cylinders[0].transform.localScale += new Vector3(0, cylinders[0].transform.localScale.y * 5, 0) * Time.deltaTime / 2;
-                cylinders[1].transform.localScale += new Vector3(0, cylinders[1].transform.localScale.y * 5, 0) * Time.deltaTime / 2;
+                cylinders[0].transform.localScale += new Vector3(0, cylinders[0].transform.localScale.y * randomExtendDistance, 0) * Time.deltaTime / randomSpeed;
+                cylinders[1].transform.localScale += new Vector3(0, cylinders[1].transform.localScale.y * randomExtendDistance, 0) * Time.deltaTime / randomSpeed;
                 if (cylinders[0].transform.localScale.y >= 5f)
                 {
                     getBig = false;
@@ -38,30 +40,23 @@ public class BossController : EnemyController
             else if (cylinders[0].transform.localScale.y >= 1 && !getBig)
             {
                 yield return new WaitForFixedUpdate();
-                cylinders[0].transform.localScale -= new Vector3(0, cylinders[0].transform.localScale.y * 5, 0) * Time.deltaTime / 2;
-                cylinders[1].transform.localScale -= new Vector3(0, cylinders[1].transform.localScale.y * 5, 0) * Time.deltaTime / 2;
+                cylinders[0].transform.localScale -= new Vector3(0, cylinders[0].transform.localScale.y * randomExtendDistance, 0) * Time.deltaTime / randomSpeed;
+                cylinders[1].transform.localScale -= new Vector3(0, cylinders[1].transform.localScale.y * randomExtendDistance, 0) * Time.deltaTime / randomSpeed;
                 if (cylinders[0].transform.localScale.y <= 1.1f)
                 {
                     getBig = true;
                 }
             }
         }
-        /*while (cylinders[0].transform.localScale.y<=5 && getBig)
-        {
-
-            yield return new WaitForFixedUpdate();
-            cylinders[0].transform.localScale += new Vector3(0, cylinders[0].transform.localScale.y * 5,0)*Time.deltaTime/2;
-            cylinders[1].transform.localScale += new Vector3(0, cylinders[1].transform.localScale.y * 5, 0) * Time.deltaTime/2;
-
-        }
-        getBig = false;
-        while (cylinders[0].transform.localScale.y >= 1 && !getBig)
-        {
-            yield return new WaitForFixedUpdate();
-            cylinders[0].transform.localScale -= new Vector3(0, cylinders[0].transform.localScale.y * 5, 0) * Time.deltaTime / 2;
-            cylinders[1].transform.localScale -= new Vector3(0, cylinders[1].transform.localScale.y * 5, 0) * Time.deltaTime / 2;
-        }
-        StartCoroutine(BiggerArms());
-        */
     }
+
+   /* private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            DealDamage(5);
+
+        }
+
+    }*/
 }

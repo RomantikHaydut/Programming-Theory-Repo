@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     protected private string shapaName;
 
+    public static int playerHealth = 100;
+
+    
     protected   Vector3 projectileSpawnPos;
 
 

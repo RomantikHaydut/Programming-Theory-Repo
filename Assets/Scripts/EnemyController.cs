@@ -67,5 +67,30 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        float stopTime = 1.2f;
+        Invoke("SpeedProtect", stopTime);
+        if (gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
+        {
+            DealDamage(5);
+        }
+        else if (!gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
+        {
+            DealDamage(1);
+        }
+
+    }
+
+
+    void SpeedProtect()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    protected void DealDamage(int damage)
+    {
+        Player.playerHealth -= damage;
+    }
 
 }
