@@ -30,6 +30,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        Debug.Log("Destroyed : " + destroyedEnemyCount);
     }
 
     void SpawnEnemy()

@@ -48,6 +48,11 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         Vector3 direction = (player.transform.position - transform.position).normalized;
         transform.position += new Vector3(direction.x,0,direction.z)*Time.deltaTime*speed;
+        if (health<=0)
+        {
+            SpawnManager.destroyedEnemyCount++;
+            Destroy(gameObject);
+        }
     }
 
     protected void ProtectSpawnNearPlayer()
@@ -61,7 +66,6 @@ public class EnemyController : MonoBehaviour
 
         }
     }
-
 
 
 }

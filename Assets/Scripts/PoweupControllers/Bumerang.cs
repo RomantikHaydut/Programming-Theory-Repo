@@ -8,7 +8,7 @@ public class Bumerang : ProjectileBase
     void Start()
     {
         name = "Bumerang";
-        damage = 5f;
+        damage = 2.5f;
         GetPlayer();
         direction = -(player.transform.position - transform.position).normalized;
         Destroy(gameObject, 15f);
@@ -28,10 +28,9 @@ public class Bumerang : ProjectileBase
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyController>().health -= (int)damage;
             Destroy(gameObject);
         }
     }

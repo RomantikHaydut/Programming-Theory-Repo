@@ -850,7 +850,6 @@ MonoBehaviour:
   - {fileID: 1152351428}
   - {fileID: 2006058778}
   - {fileID: 1237686534}
-  level: 0
 --- !u!4 &1898705427
 Transform:
   m_ObjectHideFlags: 0
@@ -946,7 +945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900619884376985821, guid: 8df48696c658d7e4b969440f610e328b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -30.21
       objectReference: {fileID: 0}
     - target: {fileID: 900619884376985821, guid: 8df48696c658d7e4b969440f610e328b, type: 3}
       propertyPath: m_LocalPosition.y

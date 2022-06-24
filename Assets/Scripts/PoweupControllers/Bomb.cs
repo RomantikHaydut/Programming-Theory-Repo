@@ -8,7 +8,7 @@ public class Bomb : ProjectileBase
     void Start()
     {
         name = "Bomb";
-        damage = 10;
+        damage = 20;
         effectRadius = 3;
         GetPlayer();
         StartCoroutine(Explosion());

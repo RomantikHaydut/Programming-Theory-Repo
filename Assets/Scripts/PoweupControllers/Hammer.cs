@@ -8,7 +8,7 @@ public class Hammer : ProjectileBase
     void Start()
     {
         name = "Hammer";
-        damage = 3f;
+        damage = 5f;
         GetPlayer();
     }
 
@@ -27,7 +27,13 @@ public class Hammer : ProjectileBase
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyController>().health -= (int)damage;
+            if (other.gameObject)
+            {
+                Vector3 forceDirection = (other.gameObject.transform.position - transform.parent.position).normalized;
+                other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(forceDirection.x,0,forceDirection.z) * 10f, ForceMode.Impulse);
+            }
+
         }
     }
 }
