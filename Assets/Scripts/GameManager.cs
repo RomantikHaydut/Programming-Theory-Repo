@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     void ChangePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Player.changePlayerCooldown <= 0 && players[0].activeInHierarchy == false)
         {
             GetPlayer();
             players[0].SetActive(true);
@@ -44,8 +44,10 @@ public class GameManager : MonoBehaviour
             players[2].SetActive(false);
             GetPosition(players[0]);
             cam.GetPlayer();
+            Player.changePlayerCooldown = 5f;
+
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && Player.changePlayerCooldown <= 0 && players[1].activeInHierarchy == false)
         {
             GetPlayer();
             players[0].SetActive(false);
@@ -53,8 +55,11 @@ public class GameManager : MonoBehaviour
             players[2].SetActive(false);
             GetPosition(players[1]);
             cam.GetPlayer();
+            Player.changePlayerCooldown = 5f;
+
+
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && Player.changePlayerCooldown <= 0 && players[2].activeInHierarchy == false)
         {
             GetPlayer();
             players[0].SetActive(false);
@@ -62,6 +67,8 @@ public class GameManager : MonoBehaviour
             players[2].SetActive(true);
             GetPosition(players[2]);
             cam.GetPlayer();
+            Player.changePlayerCooldown = 5f;
+
         }
     }
 

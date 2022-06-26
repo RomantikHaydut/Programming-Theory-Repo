@@ -18,6 +18,8 @@ public class CapsuleController : Player
         moveSpeed = 4f;
         jumpForce = 9f;
         shapaName = "Capsule";
+
+
     }
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
@@ -39,5 +41,6 @@ public class CapsuleController : Player
     private void Update()
     {
         FireProjectile(bombPrefab,false);
+        ChangeTimer();
     }
 }

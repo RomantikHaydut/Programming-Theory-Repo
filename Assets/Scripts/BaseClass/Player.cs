@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public static int playerHealth = 100;
 
     public static int playerExperience;
+
+    public static float changePlayerCooldown;
     
     protected   Vector3 projectileSpawnPos;
 
@@ -68,6 +70,11 @@ public class Player : MonoBehaviour
         
     }
 
+    protected void ChangeTimer()
+    {
+        changePlayerCooldown -= Time.deltaTime;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Experience"))
@@ -85,6 +92,8 @@ public class Player : MonoBehaviour
             Debug.Log("GAME OVER!!!!");
         }
     }
+
+
 
 
 }

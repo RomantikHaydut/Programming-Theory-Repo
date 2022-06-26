@@ -20,6 +20,7 @@ public class SphereController : Player
         jumpForce = 11.5f;
         shapaName = "Sphere";
 
+
     }
     public override void FireProjectile(GameObject projectile,bool takeChild)
     {
@@ -43,5 +44,7 @@ public class SphereController : Player
     private void Update()
     {
         FireProjectile(bumerangPrefab,false);
+        ChangeTimer();
+
     }
 }

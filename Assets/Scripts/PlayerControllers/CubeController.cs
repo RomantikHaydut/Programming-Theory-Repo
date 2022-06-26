@@ -20,6 +20,7 @@ public class CubeController : Player
         jumpForce = 7;
         shapaName = "Cube";
 
+
     }
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
@@ -39,5 +40,6 @@ public class CubeController : Player
     private void Update()
     {
         FireProjectile(hammerPrefab,true);
+        ChangeTimer();
     }
 }
