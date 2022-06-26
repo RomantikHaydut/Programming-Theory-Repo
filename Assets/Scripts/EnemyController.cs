@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     private SpawnManager spawnManager;
 
+    private GameObject experience;
+
     protected float speed;
 
     public int health;
@@ -35,7 +37,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         speed = 2;
         ProtectSpawnNearPlayer();
-        Debug.LogError("Enemy Health : " + health);
+        experience = gameObject.transform.Find("Experience").gameObject;
     }
     
     void FixedUpdate()
@@ -51,6 +53,8 @@ public class EnemyController : MonoBehaviour
         if (health<=0)
         {
             SpawnManager.destroyedEnemyCount++;
+            experience.SetActive(true);
+            experience.transform.SetParent(null);
             Destroy(gameObject);
         }
     }

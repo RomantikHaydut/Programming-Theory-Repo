@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class Player : MonoBehaviour
 
     public static int playerHealth = 100;
 
+    public static int playerExperience;
     
     protected   Vector3 projectileSpawnPos;
-
 
     private float m_moveSpeed; // base speed
 
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
 
     public  void Move(Transform trnsfrm)
     {
@@ -64,6 +66,20 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Experience"))
+        {
+            playerExperience++;
+            if (playerExperience%10==0)
+            {
+                // Here we show buff options... 
+                
+            }
+            Destroy(other.gameObject);
+        }
     }
 
 

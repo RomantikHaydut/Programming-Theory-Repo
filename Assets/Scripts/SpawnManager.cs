@@ -6,6 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
 
+    public GameObject experience;
+
     private Vector3 randomSpawnPos;
 
     private float xRange = 100;
@@ -30,7 +32,6 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        Debug.Log("Destroyed : " + destroyedEnemyCount);
     }
 
     void SpawnEnemy()
@@ -48,6 +49,11 @@ public class SpawnManager : MonoBehaviour
         randomSpawnPos = new Vector3(Random.Range(-xRange, xRange), 1, Random.Range(-zRange, zRange));
 
         return randomSpawnPos;
+    }
+
+    public void SpawnExperience(Vector3 spawnPos)
+    {
+        Instantiate(experience, spawnPos, experience.transform.rotation);
     }
 
 

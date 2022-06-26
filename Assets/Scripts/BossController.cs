@@ -10,7 +10,6 @@ public class BossController : EnemyController
     {
         StartCoroutine(BiggerArms());
         EventsInStart();
-        Debug.LogError("Boss Health : " + health);
     }
 
     
@@ -49,14 +48,4 @@ public class BossController : EnemyController
             }
         }
     }
-
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            DealDamage(5);
-
-        }
-
-    }*/
 }
