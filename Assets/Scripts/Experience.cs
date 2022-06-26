@@ -16,23 +16,31 @@ public class Experience : MonoBehaviour
 
     void FollowPlayer()
     {
-        if (gameObject.activeInHierarchy==true)
+        if (gameObject.activeInHierarchy==true && !shouldFollow)
         {
             
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance<=3f)
+            if (distance <= 3f * transform.localScale.x)
             {
                 shouldFollow = true;
+                StartCoroutine(FollowingPlayer());
 
-            }
-            if (shouldFollow)
-            {
-                Vector3 direction = (player.transform.position - transform.position);
-                transform.position += direction * Time.deltaTime * 2f;
             }
             
         }
         
+    }
+
+    IEnumerator FollowingPlayer()
+    {
+        while (shouldFollow)
+        {
+            yield return new WaitForFixedUpdate();
+            player = GameObject.FindGameObjectWithTag("Player").gameObject;
+            Vector3 direction = (player.transform.position - transform.position);
+            transform.position += direction * Time.deltaTime * 2f;
+
+        }
     }
 }
