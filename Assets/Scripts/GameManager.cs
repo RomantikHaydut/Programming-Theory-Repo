@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         cam = Camera.main.GetComponent<CameraController>();
         cam.GetPlayer();
+        Time.timeScale = 1;
     }
 
     void FixedUpdate()
