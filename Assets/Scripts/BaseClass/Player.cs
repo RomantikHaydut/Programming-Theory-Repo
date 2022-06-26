@@ -80,6 +80,10 @@ public class Player : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.CompareTag("DeadZone"))
+        {
+            Debug.Log("GAME OVER!!!!");
+        }
     }
 
 
