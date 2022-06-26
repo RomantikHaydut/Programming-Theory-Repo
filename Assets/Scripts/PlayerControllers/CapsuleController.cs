@@ -9,12 +9,10 @@ public class CapsuleController : Player
     Rigidbody rb;
     private float jumpForce;
     public GameObject bombPrefab;
-    private bool bombPowerup;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        bombPowerup = true;
         moveSpeed = 4f;
         jumpForce = 9f;
         shapaName = "Capsule";
@@ -24,7 +22,7 @@ public class CapsuleController : Player
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
     {
-        if (bombPowerup)
+        if (Input.GetMouseButton(0) && powerup)
         {
             projectileSpawnPos = transform.position - transform.forward * 2;
             base.FireProjectile(projectile,takeChild);

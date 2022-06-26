@@ -9,23 +9,22 @@ public class CubeController : Player
     private float jumpForce;
     public GameObject hammerPrefab;
 
-    private bool hammerPowerup;
-
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        hammerPowerup = true;
-        moveSpeed = 2f;
+        moveSpeed = 3f;
         jumpForce = 7;
         shapaName = "Cube";
+
+
 
 
     }
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
     {
-        if (hammerPowerup)
+        if (powerup)
         {
             projectileSpawnPos = transform.position + transform.forward*3.5f;
             base.FireProjectile(projectile,takeChild);
@@ -39,7 +38,9 @@ public class CubeController : Player
 
     private void Update()
     {
-        FireProjectile(hammerPrefab,true);
+
+        FireProjectile(hammerPrefab, true);
+
         ChangeTimer();
     }
 }

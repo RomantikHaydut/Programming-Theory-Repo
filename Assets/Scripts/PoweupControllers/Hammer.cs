@@ -20,7 +20,7 @@ public class Hammer : ProjectileBase
 
     void TurnAroundPlayer()
     {
-        transform.RotateAround(player.transform.position, Vector3.up,90f*Time.deltaTime);
+        transform.RotateAround(player.transform.position, Vector3.up,120f*Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

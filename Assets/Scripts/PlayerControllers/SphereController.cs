@@ -9,31 +9,31 @@ public class SphereController : Player
     private float jumpForce;
     Rigidbody rb;
     public GameObject bumerangPrefab;
-    private bool bumarangPowerup;
+    private int bumerangCount;
+    private bool canPowerup;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        bumarangPowerup = true;
-        moveSpeed = 1f;
+        moveSpeed = 1.5f;
         jumpForce = 11.5f;
         shapaName = "Sphere";
-
-
+        bumerangCount = 4;
+        powerup = true;
+        canPowerup = true;
     }
-    public override void FireProjectile(GameObject projectile,bool takeChild)
+    /*public override void FireProjectile(GameObject projectile, bool takeChild)
     {
-        if (bumarangPowerup)
+        for (int i = 0; i <= bumerangCount; i++)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                projectileSpawnPos = transform.position + transform.up/3 + new Vector3(Mathf.Sin(i * 90 * Mathf.Deg2Rad), 0, Mathf.Cos(i * 90 * Mathf.Deg2Rad)) * 2;
-                base.FireProjectile(projectile,takeChild);
-
-            }
+            projectileSpawnPos = transform.position + transform.up / 4 + new Vector3(Mathf.Sin(i * 90 * Mathf.Deg2Rad), 0, Mathf.Cos(i * 90 * Mathf.Deg2Rad)) * 2;
+            base.FireProjectile(projectile, takeChild);
+            powerup = true;
+            canPowerup = true;
         }
-    }
+
+    }*/
     void FixedUpdate()
     {
         Move(transform);
@@ -43,8 +43,21 @@ public class SphereController : Player
 
     private void Update()
     {
-        FireProjectile(bumerangPrefab,false);
+        if (canPowerup && Input.GetMouseButton(0))
+        {
+            Fire();
+        }
         ChangeTimer();
 
+    }
+
+    void Fire()
+    {
+        for (int i = 0; i <= bumerangCount; i++)
+        {
+            projectileSpawnPos = transform.position + transform.up / 6 + new Vector3(Mathf.Sin(i * 90 * Mathf.Deg2Rad), 0, Mathf.Cos(i * 90 * Mathf.Deg2Rad)) * 2;
+            Instantiate(bumerangPrefab, projectileSpawnPos, bumerangPrefab.transform.rotation);
+        }
+        canPowerup = false;
     }
 }

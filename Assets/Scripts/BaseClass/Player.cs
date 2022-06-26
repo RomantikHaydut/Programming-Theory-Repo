@@ -12,8 +12,12 @@ public class Player : MonoBehaviour
     public static int playerExperience;
 
     public static float changePlayerCooldown;
-    
-    protected   Vector3 projectileSpawnPos;
+
+    public bool powerup = true;
+
+    protected int powerupCount;
+
+    protected Vector3 projectileSpawnPos;
 
     private float m_moveSpeed; // base speed
 
@@ -24,7 +28,7 @@ public class Player : MonoBehaviour
         set
         {
             // Here we protect base speed.
-            if (value<=0)
+            if (value <= 0)
             {
                 Debug.LogError("Move Speed is Less Then 0 There is no Movement.");
             }
@@ -37,14 +41,14 @@ public class Player : MonoBehaviour
     }
 
 
-    public  void Move(Transform trnsfrm)
+    public void Move(Transform trnsfrm)
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         trnsfrm.position += new Vector3(horizontalInput * Time.deltaTime * m_moveSpeed, 0, verticalInput * Time.deltaTime * m_moveSpeed);
     }
 
-    public void Jump(Rigidbody playerRb,float jumpForce)
+    public void Jump(Rigidbody playerRb, float jumpForce)
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -53,22 +57,30 @@ public class Player : MonoBehaviour
 
     }
 
-    public virtual void FireProjectile(GameObject projectile,bool makeChild)
+
+
+
+    public virtual void FireProjectile(GameObject projectile, bool makeChild)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (powerup)
         {
             if (makeChild)
             {
-                Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation,transform);
-
+                Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation, transform);
             }
             else
             {
                 Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation);
             }
+            powerup = false;
         }
-        
+
     }
+
+
+
+
+
 
     protected void ChangeTimer()
     {
@@ -80,10 +92,10 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Experience"))
         {
             playerExperience++;
-            if (playerExperience%10==0)
+            if (playerExperience % 10 == 0)
             {
                 // Here we show buff options... 
-                
+
             }
             Destroy(other.gameObject);
         }
