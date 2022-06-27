@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Bomb : ProjectileBase
 {
-    private float effectRadius;
+    public static float effectRadius=3f;
     void Start()
     {
         name = "Bomb";
         damage = 20;
-        effectRadius = 3;
         GetPlayer();
         StartCoroutine(Explosion());
-        direction = -(player.transform.position - transform.position);
+        direction = (transform.position - player.transform.position);
     }
 
 
     IEnumerator Explosion()
     {
         
-        // Here bomb will move back.
-        while (Vector3.Distance(player.transform.position, transform.position) <= effectRadius*2.5f)
+        // Here bomb will move forward.
+        while (Vector3.Distance(player.transform.position, transform.position) <= effectRadius)
         {
             yield return new WaitForEndOfFrame();
             transform.position += (direction.normalized) * Time.deltaTime* 2.5f;
@@ -44,7 +43,7 @@ public class Bomb : ProjectileBase
 
         foreach (GameObject enemy in objectsInArea)
         {
-            if (Vector3.Distance(enemy.transform.position, transform.position) <= effectRadius*2)
+            if (Vector2.Distance(new Vector2(enemy.transform.position.x,enemy.transform.position.z), new Vector2(transform.position.x,transform.position.z)) <= effectRadius*1.2f)
             {
                 Destroy(enemy.gameObject);
 

@@ -16,15 +16,13 @@ public class CapsuleController : Player
         moveSpeed = 4f;
         jumpForce = 9f;
         shapaName = "Capsule";
-
-
     }
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
     {
-        if (Input.GetMouseButton(0) && powerup)
+        if (Input.GetMouseButtonDown(0) && powerup)
         {
-            projectileSpawnPos = transform.position - transform.forward * 2;
+            projectileSpawnPos = transform.position + transform.forward * 2;
             base.FireProjectile(projectile,takeChild);
         }
         

@@ -28,4 +28,9 @@ public class CanvasManager : MonoBehaviour
         Time.timeScale = 0;
         panel.SetActive(true);
     }
+
+    public void IncreaseBombEffectRadius()
+    {
+        Bomb.effectRadius *= 2;
+    }
 }

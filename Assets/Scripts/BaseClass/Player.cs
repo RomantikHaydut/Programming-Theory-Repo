@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
             {
                 Instantiate(projectile, projectileSpawnPos, projectile.transform.rotation);
             }
-            powerup = false;
+            //powerup = false;
         }
 
     }
