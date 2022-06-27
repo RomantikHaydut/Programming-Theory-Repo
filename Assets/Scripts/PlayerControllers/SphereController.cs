@@ -19,7 +19,7 @@ public class SphereController : Player
         moveSpeed = 1.5f;
         jumpForce = 11.5f;
         shapaName = "Sphere";
-        bumerangCount = 4;
+        bumerangCount = 16;
         powerup = true;
         canPowerup = true;
     }
@@ -53,9 +53,9 @@ public class SphereController : Player
 
     void Fire()
     {
-        for (int i = 0; i <= bumerangCount; i++)
+        for (int i = 1; i <= bumerangCount; i++)
         {
-            projectileSpawnPos = transform.position + transform.up / 6 + new Vector3(Mathf.Sin(i * 90 * Mathf.Deg2Rad), 0, Mathf.Cos(i * 90 * Mathf.Deg2Rad)) * 2;
+            projectileSpawnPos = transform.position + transform.up / 6 + new Vector3(Mathf.Sin(i * (360/bumerangCount) * Mathf.Deg2Rad), 0, Mathf.Cos(i * (360 / bumerangCount) * Mathf.Deg2Rad)) * 2;
             Instantiate(bumerangPrefab, projectileSpawnPos, bumerangPrefab.transform.rotation);
         }
         canPowerup = false;
