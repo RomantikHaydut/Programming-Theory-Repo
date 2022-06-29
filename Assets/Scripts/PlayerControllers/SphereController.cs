@@ -19,7 +19,7 @@ public class SphereController : Player
         moveSpeed = 1.5f;
         jumpForce = 11.5f;
         shapaName = "Sphere";
-        bumerangCount = 16;
+        bumerangCount = 4;
         powerup = true;
         canPowerup = true;
     }

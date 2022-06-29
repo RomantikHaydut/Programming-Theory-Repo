@@ -33,4 +33,11 @@ public class CanvasManager : MonoBehaviour
     {
         Bomb.effectRadius *= 2;
     }
+
+    public void SecondHammer()
+    {
+        FindObjectOfType<CubeController>().secondHammerPowerup = true;
+        FindObjectOfType<CubeController>().powerup = true;
+
+    }
 }
