@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Hammer : ProjectileBase
 {
-    
+    public static float speed;
     void Start()
     {
         name = "Hammer";
         damage = 5f;
         GetPlayer();
+        speed = 120;
     }
 
     
@@ -20,7 +21,7 @@ public class Hammer : ProjectileBase
 
     void TurnAroundPlayer()
     {
-        transform.RotateAround(player.transform.position, Vector3.up,120f*Time.deltaTime);
+        transform.RotateAround(player.transform.position, Vector3.up,speed*Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

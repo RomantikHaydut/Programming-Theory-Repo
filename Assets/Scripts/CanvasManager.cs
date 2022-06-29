@@ -40,4 +40,14 @@ public class CanvasManager : MonoBehaviour
         FindObjectOfType<CubeController>().powerup = true;
 
     }
+
+    public void FasterHammer()
+    {
+        Hammer.speed = 200;
+    }
+
+    public void Cooldown()
+    {
+        GameManager.secondChangePlayerTime = 3f;
+    }
 }

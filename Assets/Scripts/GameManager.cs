@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public static int level;
 
+    public static float secondChangePlayerTime;
+
     private Vector3 activePosition;
 
     private GameObject activePlayer;
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     void ChangePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Player.changePlayerCooldown <= 0 && players[0].activeInHierarchy == false)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Player.changePlayerCooldown <= secondChangePlayerTime && players[0].activeInHierarchy == false)
         {
             GetPlayer();
             players[0].SetActive(true);
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
             Player.changePlayerCooldown = 5f;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && Player.changePlayerCooldown <= 0 && players[1].activeInHierarchy == false)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && Player.changePlayerCooldown <= secondChangePlayerTime && players[1].activeInHierarchy == false)
         {
             GetPlayer();
             players[0].SetActive(false);
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
 
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && Player.changePlayerCooldown <= 0 && players[2].activeInHierarchy == false)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && Player.changePlayerCooldown <= secondChangePlayerTime && players[2].activeInHierarchy == false)
         {
             GetPlayer();
             players[0].SetActive(false);

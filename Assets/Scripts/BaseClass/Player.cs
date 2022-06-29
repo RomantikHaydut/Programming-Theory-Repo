@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     protected Vector3 projectileSpawnPos;
 
-    private float m_moveSpeed; // base speed
+    public float m_moveSpeed; // base speed
 
     public float moveSpeed
     {
