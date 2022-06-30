@@ -33,9 +33,16 @@ public class CanvasManager : MonoBehaviour
         Hammer.speed = 200;
     }
 
-    public void Cooldown()
+    public void PlayerCooldown()
     {
         GameManager.secondChangePlayerTime = 3f;
+    }
+
+    public void AbilityCooldown()
+    {
+        CubeController.hammerDisappearTime = -1f;
+        SphereController.cooldown = 1.5f;
+        CapsuleController.cooldown = 1.5f;
     }
 
     public void ThrowMoreBumerang()

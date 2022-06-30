@@ -9,6 +9,7 @@ public class CapsuleController : Player
     Rigidbody rb;
     private float jumpForce;
     public GameObject bombPrefab;
+    public static float cooldown;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class CapsuleController : Player
         moveSpeed = 4f;
         jumpForce = 9f;
         shapaName = "Capsule";
+        cooldown = 4f;
     }
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
@@ -24,6 +26,7 @@ public class CapsuleController : Player
         {
             projectileSpawnPos = transform.position + transform.forward * 2;
             base.FireProjectile(projectile,takeChild);
+            Invoke("PowerupCooldown", cooldown);
         }
         
     }
@@ -38,5 +41,10 @@ public class CapsuleController : Player
     {
         FireProjectile(bombPrefab,false);
         ChangeTimer();
+    }
+
+    void PowerupCooldown()
+    {
+        powerup = true;
     }
 }

@@ -11,6 +11,7 @@ public class SphereController : Player
     public GameObject bumerangPrefab;
     public static int bumerangCount;
     private bool canPowerup;
+    public static float cooldown;
 
 
     private void Start()
@@ -22,6 +23,8 @@ public class SphereController : Player
         bumerangCount = 4;
         powerup = true;
         canPowerup = true;
+        cooldown = 4f;
+        
     }
     /*public override void FireProjectile(GameObject projectile, bool takeChild)
     {
@@ -61,7 +64,7 @@ public class SphereController : Player
             Instantiate(bumerangPrefab, projectileSpawnPos, bumerangPrefab.transform.rotation);
         }
         canPowerup = false;
-        Invoke("PowerupOn", 1f);
+        Invoke("PowerupOn", cooldown);
     }
 
     void PowerupOn()
