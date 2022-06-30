@@ -8,22 +8,9 @@ public class CanvasManager : MonoBehaviour
 {
     public GameObject panel;
     public TextMeshProUGUI[] options;
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ShowOptions();
-
-        }
-    }
 
 
-    void ShowOptions()
+    public void ShowOptions()
     {
         Time.timeScale = 0;
         panel.SetActive(true);
@@ -49,5 +36,13 @@ public class CanvasManager : MonoBehaviour
     public void Cooldown()
     {
         GameManager.secondChangePlayerTime = 3f;
+    }
+
+    public void ThrowMoreBumerang()
+    {
+        if (SphereController.bumerangCount<=64)
+        {
+            SphereController.bumerangCount *= 2;
+        }
     }
 }

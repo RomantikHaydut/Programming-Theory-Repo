@@ -9,7 +9,7 @@ public class SphereController : Player
     private float jumpForce;
     Rigidbody rb;
     public GameObject bumerangPrefab;
-    private int bumerangCount;
+    public static int bumerangCount;
     private bool canPowerup;
 
 
@@ -43,7 +43,7 @@ public class SphereController : Player
 
     private void Update()
     {
-        if (canPowerup && Input.GetMouseButton(0))
+        if (canPowerup && Input.GetKeyDown(KeyCode.F))
         {
             Fire();
         }
@@ -53,11 +53,19 @@ public class SphereController : Player
 
     void Fire()
     {
-        for (int i = 1; i <= bumerangCount; i++)
+        for (int i = 0; i < bumerangCount; i++)
         {
-            projectileSpawnPos = transform.position + transform.up / 6 + new Vector3(Mathf.Sin(i * (360/bumerangCount) * Mathf.Deg2Rad), 0, Mathf.Cos(i * (360 / bumerangCount) * Mathf.Deg2Rad)) * 2;
+            
+            float angle = i * Mathf.PI * 2 / bumerangCount;
+            projectileSpawnPos = transform.position + transform.up / 6 + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle))*2;
             Instantiate(bumerangPrefab, projectileSpawnPos, bumerangPrefab.transform.rotation);
         }
         canPowerup = false;
+        Invoke("PowerupOn", 1f);
+    }
+
+    void PowerupOn()
+    {
+        canPowerup = true;
     }
 }

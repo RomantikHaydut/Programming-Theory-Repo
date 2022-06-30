@@ -20,7 +20,7 @@ public class CapsuleController : Player
 
     public override void FireProjectile(GameObject projectile,bool takeChild)
     {
-        if (Input.GetMouseButtonDown(0) && powerup)
+        if (Input.GetKeyDown(KeyCode.F) && powerup)
         {
             projectileSpawnPos = transform.position + transform.forward * 2;
             base.FireProjectile(projectile,takeChild);
