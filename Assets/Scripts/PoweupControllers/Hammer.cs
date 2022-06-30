@@ -13,7 +13,7 @@ public class Hammer : ProjectileBase
         speed = 120;
     }
 
-    
+
     void FixedUpdate()
     {
         TurnAroundPlayer();
@@ -21,7 +21,7 @@ public class Hammer : ProjectileBase
 
     void TurnAroundPlayer()
     {
-        transform.RotateAround(player.transform.position, Vector3.up,speed*Time.deltaTime);
+        transform.RotateAround(player.transform.position, Vector3.up, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,13 +29,17 @@ public class Hammer : ProjectileBase
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyController>().health -= (int)damage;
-            if (other.gameObject)
+            if (other.GetComponent<Rigidbody>() && other.gameObject)
             {
-                Vector3 forceDirection = (other.gameObject.transform.position - transform.parent.position).normalized;
-                other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(forceDirection.x,0,forceDirection.z) * 10f, ForceMode.Impulse);
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                if (rb.mass <= 1.5f)
+                {
+                    Vector3 forceDirection = (other.gameObject.transform.position - transform.parent.position).normalized;
+                    other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(forceDirection.x, 0, forceDirection.z) * 10f, ForceMode.Impulse);
+                }
             }
-
         }
+
     }
 
 
