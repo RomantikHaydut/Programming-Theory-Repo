@@ -40,7 +40,7 @@ public class CanvasManager : MonoBehaviour
 
     public void ThrowMoreBumerang()
     {
-        if (SphereController.bumerangCount<128)
+        if (SphereController.bumerangCount < 128)
         {
             SphereController.bumerangCount *= 2;
         }
@@ -53,6 +53,8 @@ public class CanvasManager : MonoBehaviour
         {
             exp.GetComponent<Experience>().shouldFollow = true;
             StartCoroutine(exp.GetComponent<Experience>().FollowingPlayer());
+
         }
+        return;
     }
 }
