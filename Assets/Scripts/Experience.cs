@@ -6,7 +6,7 @@ public class Experience : MonoBehaviour
 {
     private GameObject player;
 
-    private bool shouldFollow;
+    public bool shouldFollow;
     
     void FixedUpdate()
     {
@@ -32,7 +32,7 @@ public class Experience : MonoBehaviour
         
     }
 
-    IEnumerator FollowingPlayer()
+    public IEnumerator FollowingPlayer()
     {
         while (shouldFollow)
         {

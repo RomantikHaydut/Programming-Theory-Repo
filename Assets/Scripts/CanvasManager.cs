@@ -40,9 +40,19 @@ public class CanvasManager : MonoBehaviour
 
     public void ThrowMoreBumerang()
     {
-        if (SphereController.bumerangCount<=64)
+        if (SphereController.bumerangCount<128)
         {
             SphereController.bumerangCount *= 2;
+        }
+    }
+
+    public void PickAllExperience()
+    {
+        GameObject[] experiences = GameObject.FindGameObjectsWithTag("Experience");
+        foreach (GameObject exp in experiences)
+        {
+            exp.GetComponent<Experience>().shouldFollow = true;
+            StartCoroutine(exp.GetComponent<Experience>().FollowingPlayer());
         }
     }
 }
