@@ -8,7 +8,7 @@ public class Bumerang : ProjectileBase
     void Start()
     {
         name = "Bumerang";
-        damage = 3;
+        damage = 3+(SpawnManager.level);
         GetPlayer();
         direction = -(player.transform.position - transform.position).normalized;
     }
