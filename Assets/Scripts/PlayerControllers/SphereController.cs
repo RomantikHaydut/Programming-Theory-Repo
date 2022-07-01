@@ -9,7 +9,7 @@ public class SphereController : Player
     private float jumpForce;
     Rigidbody rb;
     public GameObject bumerangPrefab;
-    public static int bumerangCount;
+    public static int bumerangCount=4;
     private bool canPowerup;
     public static float cooldown;
 
@@ -20,7 +20,6 @@ public class SphereController : Player
         moveSpeed = 1.5f;
         jumpForce = 11.5f;
         shapaName = "Sphere";
-        bumerangCount = 4;
         powerup = true;
         canPowerup = true;
         cooldown = 4f;
