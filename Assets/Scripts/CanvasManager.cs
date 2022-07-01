@@ -38,6 +38,10 @@ public class CanvasManager : MonoBehaviour
     {
         gameManager.SelectCapsule();
         Bomb.effectRadius *= 2;
+        if (Bomb.effectRadius>=12)
+        {
+            options[3].SetActive(false);
+        }
         CloseOptions();
     }
 
@@ -104,6 +108,10 @@ public class CanvasManager : MonoBehaviour
         if (SphereController.bumerangCount < 128)
         {
             SphereController.bumerangCount *= 2;
+        }
+        else if (SphereController.bumerangCount >= 128)
+        {
+            options[4].SetActive(false);
         }
         CloseOptions();
 
