@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject panel;
     public GameObject[] options;
     public GameManager gameManager;
-
+    public static int destroyedOptions = 0;
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -24,8 +24,12 @@ public class CanvasManager : MonoBehaviour
     }
     public void ShowOptions()
     {
-        Time.timeScale = 0;
-        panel.SetActive(true);
+        if (destroyedOptions<6)
+        {
+            Time.timeScale = 0;
+            panel.SetActive(true);
+        }
+        
     }
 
     private void CloseOptions()
@@ -40,6 +44,7 @@ public class CanvasManager : MonoBehaviour
         Bomb.effectRadius *= 2;
         if (Bomb.effectRadius>=12)
         {
+            destroyedOptions++;
             options[3].SetActive(false);
         }
         CloseOptions();
@@ -53,6 +58,7 @@ public class CanvasManager : MonoBehaviour
         FindObjectOfType<CameraController>().GetPlayer();
         options[1].gameObject.SetActive(true);
         options[2].gameObject.SetActive(false);
+        destroyedOptions++;
         CloseOptions();
     }
 
@@ -60,6 +66,7 @@ public class CanvasManager : MonoBehaviour
     {
         Hammer.speed = 200;
         options[1].gameObject.SetActive(false);
+        destroyedOptions++;
         CloseOptions();
 
     }
@@ -68,6 +75,7 @@ public class CanvasManager : MonoBehaviour
     {
         GameManager.secondChangePlayerTime = 3f;
         options[0].gameObject.SetActive(false);
+        destroyedOptions++;
         CloseOptions();
 
     }
@@ -97,7 +105,7 @@ public class CanvasManager : MonoBehaviour
             CapsuleController.cooldown = 1.5f; 
         }
 
-
+        destroyedOptions++;
         CloseOptions();
         options[6].gameObject.SetActive(false);
     }
@@ -112,6 +120,7 @@ public class CanvasManager : MonoBehaviour
         else if (SphereController.bumerangCount >= 128)
         {
             options[4].SetActive(false);
+            destroyedOptions++;
         }
         CloseOptions();
 
