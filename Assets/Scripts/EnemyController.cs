@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
 
     private GameObject experience;
 
-    protected float speed;
+    public static float speed;
 
     public int health;
     void Start()
@@ -21,19 +21,8 @@ public class EnemyController : MonoBehaviour
     protected void EventsInStart()
     {
         // Here we set spawning enemy health according to level.
-        if (SpawnManager.level <= 5)
-        {
-            health = 10;
-
-        }
-        else if (SpawnManager.level > 5 && SpawnManager.level < 10)
-        {
-            health = 20;
-        }
-        else if (SpawnManager.level >= 10)
-        {
-            health = 200;
-        }
+        health = 5;
+        health = (SpawnManager.level*health)+3;
         player = GameObject.FindGameObjectWithTag("Player");
         speed = 2;
         ProtectSpawnNearPlayer();
