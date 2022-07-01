@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     public static int playerHealth = 100;
 
-    public static int playerExperience;
+    public static int playerExperience=0;
 
     public static float changePlayerCooldown;
 
@@ -92,16 +92,21 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Experience"))
         {
             playerExperience++;
-            if (playerExperience % 10 == 0)
+            if (playerExperience % 20 == 0)
             {
                 // Here we show buff options... 
-
+                SpawnManager.level++;
+                FindObjectOfType<CanvasManager>().ShowOptions();
             }
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("DeadZone"))
         {
             Debug.Log("GAME OVER!!!!");
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            // Deal damage here;
         }
     }
 
