@@ -70,8 +70,30 @@ public class CanvasManager : MonoBehaviour
 
     public void AbilityCooldown()
     {
-        SphereController.cooldown = 1.5f;
-        CapsuleController.cooldown = 1.5f;
+        if (gameManager.activePlayer.GetComponent<CubeController>())
+        {
+            gameManager.SelectSphere();
+            SphereController.cooldown = 1.5f;
+            gameManager.SelectCapsule();
+            CapsuleController.cooldown = 1.5f;
+            gameManager.SelectCube();
+        }
+        else if (gameManager.activePlayer.GetComponent<SphereController>())
+        {
+            SphereController.cooldown = 1.5f;
+            gameManager.SelectCapsule();
+            CapsuleController.cooldown = 1.5f;
+            gameManager.SelectSphere();
+        }
+        else if (gameManager.activePlayer.GetComponent<CapsuleController>())
+        {
+            gameManager.SelectSphere();
+            SphereController.cooldown = 1.5f;
+            gameManager.SelectCapsule();
+            CapsuleController.cooldown = 1.5f; 
+        }
+
+
         CloseOptions();
         options[6].gameObject.SetActive(false);
     }

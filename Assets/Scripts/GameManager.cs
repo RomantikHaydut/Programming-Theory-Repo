@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private Vector3 activePosition;
 
-    private GameObject activePlayer;
+    public GameObject activePlayer;
     void Awake()
     {
         level = 1;
