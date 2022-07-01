@@ -11,7 +11,6 @@ public class CubeController : Player
     public bool secondHammerPowerup;
     private Transform firstHammer;
     private GameObject secondHammer;
-    private Vector4 hammerRotation;
 
     private void Start()
     {
@@ -33,8 +32,7 @@ public class CubeController : Player
         }
         else if (powerup && secondHammerPowerup)
         {
-            hammerRotation = new Vector4(0, -firstHammer.localRotation.y, 0 , firstHammer.localRotation.w);
-            projectileSpawnPos = new Vector3(-firstHammer.position.x, firstHammer.position.y, -firstHammer.position.z);
+            projectileSpawnPos = (transform.localPosition - new Vector3(firstHammer.localPosition.x,0,firstHammer.localPosition.z));
             base.FireProjectile(projectile, takeChild);
             secondHammer= transform.Find("Hammer(Clone)").gameObject.transform.gameObject;
             secondHammer.transform.eulerAngles = new Vector3(0, firstHammer.transform.eulerAngles.y+180, 0);
@@ -49,8 +47,12 @@ public class CubeController : Player
 
     private void Update()
     {
-        FireProjectile(hammerPrefab, true );
 
         ChangeTimer();
+    }
+
+    private void LateUpdate()
+    {
+        FireProjectile(hammerPrefab, true );
     }
 }
