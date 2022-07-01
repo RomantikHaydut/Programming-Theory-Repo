@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
         enemyCount = 0;
         destroyedEnemyCount = 0;
         level = 1;
-        InvokeRepeating("SpawnEnemy", 1f, 0.1f);
+        InvokeRepeating("SpawnEnemy", 1f, 0.01f);
     }
 
 
@@ -36,7 +36,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (enemyCount<=50)
+        if (enemyCount<=100)
         {
             int index = Random.Range(0, enemyPrefabs.Length);
             Instantiate(enemyPrefabs[index], SpawnPos(), enemyPrefabs[index].transform.rotation);
