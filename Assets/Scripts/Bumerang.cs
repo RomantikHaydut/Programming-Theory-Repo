@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bumerang : ProjectileBase
 {
-    private float lifeTime = 10;
+    private float lifeTime = 9;
     void Start()
     {
         name = "Bumerang";
@@ -22,11 +22,11 @@ public class Bumerang : ProjectileBase
     void Movement()
     {
         lifeTime -= Time.deltaTime;
-        if (lifeTime<=10 && lifeTime>=5)
+        if (lifeTime<=9 && lifeTime>=4.5)
         {
             transform.position += direction * Time.deltaTime * 3.5f;
         }
-        else if (lifeTime<5)
+        else if (lifeTime<4.5)
         {
             GetPlayer();
             direction = -(player.transform.position - transform.position).normalized;
