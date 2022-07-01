@@ -40,38 +40,49 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && Player.changePlayerCooldown <= secondChangePlayerTime && players[0].activeInHierarchy == false)
         {
-            GetPlayer();
-            players[0].SetActive(true);
-            players[1].SetActive(false);
-            players[2].SetActive(false);
-            GetPosition(players[0]);
-            cam.GetPlayer();
-            Player.changePlayerCooldown = 5f;
-
+            SelectCube();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && Player.changePlayerCooldown <= secondChangePlayerTime && players[1].activeInHierarchy == false)
         {
-            GetPlayer();
-            players[0].SetActive(false);
-            players[1].SetActive(true);
-            players[2].SetActive(false);
-            GetPosition(players[1]);
-            cam.GetPlayer();
-            Player.changePlayerCooldown = 5f;
-
-
+            SelectSphere();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && Player.changePlayerCooldown <= secondChangePlayerTime && players[2].activeInHierarchy == false)
         {
-            GetPlayer();
-            players[0].SetActive(false);
-            players[1].SetActive(false);
-            players[2].SetActive(true);
-            GetPosition(players[2]);
-            cam.GetPlayer();
-            Player.changePlayerCooldown = 5f;
-
+            SelectCapsule();
         }
+    }
+
+    public void SelectCube()
+    {
+        GetPlayer();
+        players[0].SetActive(true);
+        players[1].SetActive(false);
+        players[2].SetActive(false);
+        GetPosition(players[0]);
+        cam.GetPlayer();
+        Player.changePlayerCooldown = 5f;
+    }
+
+    public void SelectSphere()
+    {
+        GetPlayer();
+        players[0].SetActive(false);
+        players[1].SetActive(true);
+        players[2].SetActive(false);
+        GetPosition(players[1]);
+        cam.GetPlayer();
+        Player.changePlayerCooldown = 5f;
+    }
+
+    public void SelectCapsule()
+    {
+        GetPlayer();
+        players[0].SetActive(false);
+        players[1].SetActive(false);
+        players[2].SetActive(true);
+        GetPosition(players[2]);
+        cam.GetPlayer();
+        Player.changePlayerCooldown = 5f;
     }
 
     void GetPlayer()
