@@ -11,8 +11,8 @@ public class ProjectileBase : MonoBehaviour
 
     protected GameObject player;
 
-    protected float m_damage;
-    protected float damage 
+    protected int m_damage;
+    protected int damage 
     {
         get { return m_damage; }
         set

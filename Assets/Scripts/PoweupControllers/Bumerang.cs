@@ -8,7 +8,7 @@ public class Bumerang : ProjectileBase
     void Start()
     {
         name = "Bumerang";
-        damage = 2.5f;
+        damage = 3;
         GetPlayer();
         direction = -(player.transform.position - transform.position).normalized;
     }

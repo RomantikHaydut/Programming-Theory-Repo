@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Hammer : ProjectileBase
 {
-    public static float speed;
+    public static float speed=120;
     void Start()
     {
         name = "Hammer";
-        damage = 5f;
+        damage = 5;
         GetPlayer();
-        speed = 120;
     }
 
 
