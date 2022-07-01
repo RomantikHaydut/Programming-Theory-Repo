@@ -8,7 +8,7 @@ public class Hammer : ProjectileBase
     void Start()
     {
         name = "Hammer";
-        damage = 5;
+        damage = 5+(SpawnManager.level*2);
         GetPlayer();
     }
 
@@ -31,7 +31,7 @@ public class Hammer : ProjectileBase
             if (other.GetComponent<Rigidbody>() && other.gameObject)
             {
                 Rigidbody rb = other.GetComponent<Rigidbody>();
-                if (rb.mass <= 1.5f)
+                if (rb.mass <= 1.5f && SpawnManager.level<=20)
                 {
                     Vector3 forceDirection = (other.gameObject.transform.position - transform.parent.position).normalized;
                     other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(forceDirection.x, 0, forceDirection.z) * 10f, ForceMode.Impulse);
