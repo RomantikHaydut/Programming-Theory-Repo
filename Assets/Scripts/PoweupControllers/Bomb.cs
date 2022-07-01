@@ -45,7 +45,7 @@ public class Bomb : ProjectileBase
         {
             if (Vector2.Distance(new Vector2(enemy.transform.position.x,enemy.transform.position.z), new Vector2(transform.position.x,transform.position.z)) <= effectRadius*1.2f)
             {
-                Destroy(enemy.gameObject);
+                enemy.GetComponent<EnemyController>().health -= damage;
 
             }
         }
