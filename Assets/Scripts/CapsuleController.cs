@@ -40,7 +40,6 @@ public class CapsuleController : Player
     private void Update()
     {
         FireProjectile(bombPrefab,false);
-        ChangeTimer();
     }
 
     void PowerupCooldown()

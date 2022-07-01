@@ -9,9 +9,7 @@ public class Player : MonoBehaviour
 
     public static int playerHealth = 100;
 
-    public static int playerExperience=0;
-
-    public static float changePlayerCooldown;
+    public static int playerExperience = 0;
 
     public bool powerup = true;
 
@@ -19,7 +17,7 @@ public class Player : MonoBehaviour
 
     protected Vector3 projectileSpawnPos;
 
-    public   float m_moveSpeed; // base speed
+    public float m_moveSpeed; // base speed
 
     public float moveSpeed
     {
@@ -39,7 +37,6 @@ public class Player : MonoBehaviour
         }
 
     }
-
 
     public void Move(Transform trnsfrm)
     {
@@ -75,16 +72,6 @@ public class Player : MonoBehaviour
             powerup = false;
         }
 
-    }
-
-
-
-
-
-
-    protected void ChangeTimer()
-    {
-        changePlayerCooldown -= Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -9,6 +9,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject panel;
     public GameObject[] options;
     public GameManager gameManager;
+    public GameObject shield;
+    public bool shieldPowerup = false;
     public static int destroyedOptions = 0;
     private void Start()
     {
@@ -17,9 +19,10 @@ public class CanvasManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.P) && shieldPowerup)
         {
-            ShowOptions();
+            shield.SetActive(true);
+            shieldPowerup = false;
         }
     }
     public void ShowOptions()
@@ -71,11 +74,11 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void PlayerCooldown()
+    public void ShieldAbility()
     {
-        GameManager.secondChangePlayerTime = 3f;
         options[0].gameObject.SetActive(false);
         destroyedOptions++;
+        shieldPowerup = true;
         CloseOptions();
 
     }
@@ -113,11 +116,11 @@ public class CanvasManager : MonoBehaviour
     public void ThrowMoreBumerang()
     {
         gameManager.SelectSphere();
-        if (SphereController.bumerangCount < 128)
+        if (SphereController.bumerangCount < 32)
         {
             SphereController.bumerangCount *= 2;
         }
-        else if (SphereController.bumerangCount >= 128)
+        else if (SphereController.bumerangCount >= 32)
         {
             options[4].SetActive(false);
             destroyedOptions++;

@@ -45,12 +45,6 @@ public class CubeController : Player
         Jump(rb, jumpForce);
     }
 
-    private void Update()
-    {
-
-        ChangeTimer();
-    }
-
     private void LateUpdate()
     {
         FireProjectile(hammerPrefab, true );

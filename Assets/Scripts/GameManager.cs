@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
 
     public static int level;
 
-    public static float secondChangePlayerTime;
-
     private Vector3 activePosition;
 
     public GameObject activePlayer;
@@ -38,15 +36,15 @@ public class GameManager : MonoBehaviour
 
     void ChangePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Player.changePlayerCooldown <= secondChangePlayerTime && players[0].activeInHierarchy == false)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && players[0].activeInHierarchy == false)
         {
             SelectCube();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && Player.changePlayerCooldown <= secondChangePlayerTime && players[1].activeInHierarchy == false)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && players[1].activeInHierarchy == false)
         {
             SelectSphere();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && Player.changePlayerCooldown <= secondChangePlayerTime && players[2].activeInHierarchy == false)
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && players[2].activeInHierarchy == false)
         {
             SelectCapsule();
         }
@@ -60,7 +58,6 @@ public class GameManager : MonoBehaviour
         players[2].SetActive(false);
         GetPosition(players[0]);
         cam.GetPlayer();
-        Player.changePlayerCooldown = 5f;
     }
 
     public void SelectSphere()
@@ -71,7 +68,6 @@ public class GameManager : MonoBehaviour
         players[2].SetActive(false);
         GetPosition(players[1]);
         cam.GetPlayer();
-        Player.changePlayerCooldown = 5f;
     }
 
     public void SelectCapsule()
@@ -82,7 +78,6 @@ public class GameManager : MonoBehaviour
         players[2].SetActive(true);
         GetPosition(players[2]);
         cam.GetPlayer();
-        Player.changePlayerCooldown = 5f;
     }
 
     void GetPlayer()

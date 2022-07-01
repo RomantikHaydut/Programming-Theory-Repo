@@ -49,7 +49,6 @@ public class SphereController : Player
         {
             Fire();
         }
-        ChangeTimer();
 
     }
 
