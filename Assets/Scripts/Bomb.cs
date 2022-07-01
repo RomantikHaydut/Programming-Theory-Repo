@@ -11,7 +11,7 @@ public class Bomb : ProjectileBase
         damage = 20;
         GetPlayer();
         StartCoroutine(Explosion());
-        direction = (transform.position - player.transform.position);
+        direction = (transform.position - player.transform.position)-transform.up/2;
     }
 
 
@@ -19,7 +19,7 @@ public class Bomb : ProjectileBase
     {
         
         // Here bomb will move forward.
-        while (Vector3.Distance(player.transform.position, transform.position) <= effectRadius)
+        while (Vector3.Distance(player.transform.position, transform.position) <= effectRadius/2)
         {
             yield return new WaitForEndOfFrame();
             transform.position += (direction.normalized) * Time.deltaTime* 2.5f;
@@ -32,7 +32,7 @@ public class Bomb : ProjectileBase
         {
             yield return new WaitForEndOfFrame();
             transform.localScale += (Vector3.one * Time.deltaTime);
-            transform.position += new Vector3(0, 1 * Time.deltaTime, 0);
+           // transform.position += new Vector3(0, 1 * Time.deltaTime, 0);
 
         }
 
