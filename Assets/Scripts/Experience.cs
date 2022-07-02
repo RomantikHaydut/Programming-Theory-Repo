@@ -6,8 +6,9 @@ public class Experience : MonoBehaviour
 {
     private GameObject player;
 
+
     public bool shouldFollow;
-    
+
     void FixedUpdate()
     {
         FollowPlayer();
