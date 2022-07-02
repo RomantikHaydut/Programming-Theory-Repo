@@ -42,14 +42,19 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && players[0].activeInHierarchy == false)
         {
             SelectCube();
+            GetPlayer();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && players[1].activeInHierarchy == false)
         {
             SelectSphere();
+            GetPlayer();
+
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && players[2].activeInHierarchy == false)
         {
             SelectCapsule();
+            GetPlayer();
+
         }
     }
 
