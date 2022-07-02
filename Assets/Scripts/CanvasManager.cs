@@ -11,6 +11,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject[] options;
     public GameManager gameManager;
+    public TheManager theManager;
     public GameObject shield;
     public bool shieldPowerup = false;
     public static int destroyedOptions = 0;
@@ -21,6 +22,7 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        theManager = GameObject.Find("TheManager").GetComponent<TheManager>();
         score = 0;
     }
 
@@ -229,10 +231,26 @@ public class CanvasManager : MonoBehaviour
 
     public void RestartGame()
     {
+        if (score>TheManager.bestScore)
+        {
+            theManager.SaveNameAndScore(TheManager.activePlayerName, score);
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void QuitGame()
     {
+        if (score > TheManager.bestScore)
+        {
+            theManager.SaveNameAndScore(TheManager.activePlayerName, score);
+        }
         Application.Quit();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (score > TheManager.bestScore)
+        {
+            theManager.SaveNameAndScore(TheManager.activePlayerName, score);
+        }
     }
 }

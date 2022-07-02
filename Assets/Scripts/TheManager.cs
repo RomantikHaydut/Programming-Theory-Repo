@@ -17,11 +17,11 @@ public class TheManager : MonoBehaviour
 
     public AudioClip carribean;
 
-    public string activePlayerName;
+    public static string activePlayerName;
 
     public string bestScoreOwner;
 
-    public int bestScore;
+    public static int bestScore;
 
 
     private void Awake()
