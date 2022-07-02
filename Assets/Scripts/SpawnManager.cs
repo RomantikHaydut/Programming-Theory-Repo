@@ -6,6 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
 
+    public GameObject bossPrefab;
+
     public GameObject experience;
 
     private Vector3 randomSpawnPos;
@@ -36,11 +38,32 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (enemyCount<=100)
+        if (level<=10)
         {
-            int index = Random.Range(0, enemyPrefabs.Length);
-            Instantiate(enemyPrefabs[index], SpawnPos(), enemyPrefabs[index].transform.rotation);
+            if (enemyCount <= 50)
+            {
+                int index = Random.Range(0, enemyPrefabs.Length);
+                Instantiate(enemyPrefabs[index], SpawnPos(), enemyPrefabs[index].transform.rotation);
+            }
         }
+        else if (level>10 && level<=25)
+        {
+            if (enemyCount <= 100)
+            {
+                int index = Random.Range(0, enemyPrefabs.Length);
+                Instantiate(enemyPrefabs[index], SpawnPos(), enemyPrefabs[index].transform.rotation);
+            }
+        }
+        else if (level>25)
+        {
+            if (enemyCount <= 5)
+            {
+                int index = Random.Range(0, enemyPrefabs.Length);
+                Instantiate(enemyPrefabs[index], SpawnPos(), enemyPrefabs[index].transform.rotation);
+                Instantiate(bossPrefab, SpawnPos(), bossPrefab.transform.rotation);
+            }
+        }
+        
         
     }
 
