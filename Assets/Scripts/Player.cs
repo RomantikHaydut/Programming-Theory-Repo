@@ -72,6 +72,10 @@ public class Player : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+        else if (gameObject.GetComponent<Rigidbody>().angularVelocity.x >0.1f)
+        {
+            gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
