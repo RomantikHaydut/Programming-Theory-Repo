@@ -85,9 +85,10 @@ public class EnemyController : MonoBehaviour
         Invoke("SpeedProtect", stopTime);
         if (gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
         {
-            DealDamage(5);
+            
             if (!Player.shieldOn)
             {
+                DealDamage(5);
                 Rigidbody playerRb = other.gameObject.GetComponent<Rigidbody>();
                 Vector3 forceDirection = (other.gameObject.transform.position - transform.position).normalized;
                 playerRb.AddForce(new Vector3(forceDirection.x, 0, forceDirection.z) * 15f, ForceMode.Impulse);
@@ -95,7 +96,10 @@ public class EnemyController : MonoBehaviour
         }
         else if (!gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
         {
-            DealDamage(1);
+            if (!Player.shieldOn)
+            {
+                DealDamage(1);
+            }
             Destroy(gameObject);
         }
 
