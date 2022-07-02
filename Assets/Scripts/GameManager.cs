@@ -21,12 +21,15 @@ public class GameManager : MonoBehaviour
             players[i].SetActive(false);
         }
         players[0].SetActive(true);
+        GetPlayer();
+
+
     }
     private void Start()
     {
         cam = Camera.main.GetComponent<CameraController>();
-        cam.GetPlayer();
         Time.timeScale = 1;
+
     }
 
     void FixedUpdate()

@@ -6,9 +6,8 @@ public class CameraController : MonoBehaviour
 {
     GameObject player;
 
-    bool playerFinded;
-
     Vector3 offSet;
+    
     void Start()
     {
         GetPlayer();
