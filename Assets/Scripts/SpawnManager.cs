@@ -18,12 +18,15 @@ public class SpawnManager : MonoBehaviour
 
     private int enemyCount;
 
+    private int bossCount;
+
     public static int destroyedEnemyCount;
 
     public static int level;
 
     void Start()
     {
+        bossCount = 0;
         enemyCount = 0;
         destroyedEnemyCount = 0;
         level = 1;
@@ -56,11 +59,15 @@ public class SpawnManager : MonoBehaviour
         }
         else if (level>25)
         {
-            if (enemyCount <= 5)
+            if (bossCount <= 5)
+            {
+                Instantiate(bossPrefab, SpawnPos(), bossPrefab.transform.rotation);
+                bossCount++;
+            }
+            if(enemyCount<=25)
             {
                 int index = Random.Range(0, enemyPrefabs.Length);
                 Instantiate(enemyPrefabs[index], SpawnPos(), enemyPrefabs[index].transform.rotation);
-                Instantiate(bossPrefab, SpawnPos(), bossPrefab.transform.rotation);
             }
         }
         
