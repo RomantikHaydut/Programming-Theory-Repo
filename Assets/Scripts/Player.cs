@@ -83,11 +83,11 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Experience"))
         {
             playerExperience++;
+            FindObjectOfType<CanvasManager>().AddScore(5);
             if (playerExperience % 20 == 0)
             {
                 // Here we show buff options... 
                 SpawnManager.level++;
-                FindObjectOfType<CanvasManager>().AddScore(5);
                 FindObjectOfType<CanvasManager>().ShowOptions();
             }
             Destroy(other.gameObject);
