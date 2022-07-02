@@ -49,4 +49,9 @@ public class ShieldController : MonoBehaviour
             enemyRb.AddForce(new Vector3(forceDirection.x,0,forceDirection.z)*10f,ForceMode.Impulse);
         }
     }
+
+    private void OnDestroy()
+    {
+        Player.shieldOn = false;
+    }
 }

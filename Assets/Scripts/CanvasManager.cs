@@ -16,6 +16,7 @@ public class CanvasManager : MonoBehaviour
     public bool shieldPowerup = false;
     public static int destroyedOptions = 0;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI bestScoreText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
     public int score;
@@ -23,13 +24,20 @@ public class CanvasManager : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         theManager = GameObject.Find("TheManager").GetComponent<TheManager>();
+        theManager.LoadNameAndScore();
+        bestScoreText.text = "Best Score : " + TheManager.bestScore;
+        Player.playerHealth = 100;
         score = 0;
+        Debug.Log(TheManager.activePlayerName);
+        Debug.Log(TheManager.bestScore);
+        Debug.Log(TheManager.bestScoreOwner);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && shieldPowerup)
         {
+            Player.shieldOn = true;
             shield.SetActive(true);
             shieldPowerup = false;
         }
@@ -223,10 +231,20 @@ public class CanvasManager : MonoBehaviour
         healthText.text = "Health : %" + Player.playerHealth;
         if (Player.playerHealth<=0)
         {
-            Time.timeScale = 0;
-            gameOverPanel.SetActive(true);
-            gameOverText.text = "Game Over! \n" + "Score : " + score;
+            if (score > TheManager.bestScore)
+            {
+                theManager.SaveNameAndScore(TheManager.activePlayerName, score);
+            }
+            theManager.LoadNameAndScore();
+            GameOver();
         }
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
+        gameOverText.text = "Game Over! \n" + "Score : " + score + "\nBestScore : " + TheManager.bestScore + " By : " + TheManager.bestScoreOwner;
     }
 
     public void RestartGame()
