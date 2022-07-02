@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    protected private string shapaName;
 
     public static int playerHealth = 100;
 
     public static int playerExperience = 0;
 
     public bool powerup = true;
+
+    public static bool shieldOn;
 
     protected int powerupCount;
 
@@ -37,6 +38,10 @@ public class Player : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
+        InvokeRepeating("SpeedProtect", 1f, 1f);
+    }
 
     public void Move(Transform trnsfrm)
     {
@@ -44,19 +49,6 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         trnsfrm.position += new Vector3(horizontalInput * Time.deltaTime * m_moveSpeed, 0, verticalInput * Time.deltaTime * m_moveSpeed);
     }
-
-    public void Jump(Rigidbody playerRb, float jumpForce)
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerRb.velocity = new Vector3(0, jumpForce, 0);
-        }
-
-    }
-
-
-
-
     public virtual void FireProjectile(GameObject projectile, bool makeChild)
     {
         if (powerup)
@@ -74,6 +66,14 @@ public class Player : MonoBehaviour
 
     }
 
+    protected void SpeedProtect()
+    {
+        if (gameObject.GetComponent<Rigidbody>().velocity.x>=0.1f)
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Experience"))
@@ -83,17 +83,14 @@ public class Player : MonoBehaviour
             {
                 // Here we show buff options... 
                 SpawnManager.level++;
+                FindObjectOfType<CanvasManager>().AddScore(5);
                 FindObjectOfType<CanvasManager>().ShowOptions();
             }
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("DeadZone"))
         {
-            Debug.Log("GAME OVER!!!!");
-        }
-        else if (other.gameObject.CompareTag("Enemy"))
-        {
-            // Deal damage here;
+            FindObjectOfType<CanvasManager>().GameOver();
         }
     }
 
