@@ -1065,7 +1065,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1408601366}
+        m_TargetAssemblyTypeName: TheManager, Assembly-CSharp
+        m_MethodName: GetPlayerName
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 144447422}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1462,6 +1474,9 @@ MonoBehaviour:
   batman: {fileID: 0}
   time: {fileID: 0}
   carribean: {fileID: 0}
+  activePlayerName: 
+  bestScoreOwner: 
+  bestScore: 0
 --- !u!4 &1408601367
 Transform:
   m_ObjectHideFlags: 0
