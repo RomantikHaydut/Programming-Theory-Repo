@@ -7,13 +7,14 @@ using UnityEngine;
 public class SphereController : Player
 {
     public GameObject bumerangPrefab;
-    public static int bumerangCount=4;
+    public static int bumerangCount;
     private bool canPowerup;
     public static float cooldown;
 
 
     private void Start()
     {
+        bumerangCount = 4;
         moveSpeed = 1.5f;
         powerup = true;
         canPowerup = true;
