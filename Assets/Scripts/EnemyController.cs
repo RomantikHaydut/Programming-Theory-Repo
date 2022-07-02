@@ -38,6 +38,11 @@ public class EnemyController : MonoBehaviour
         {
             speed = 4;
         }
+        if (gameObject.GetComponent<BossController>())
+        {
+            health = 9999;
+            speed = 4;
+        }
         ProtectSpawnNearPlayer();
         experience = gameObject.transform.Find("Experience").gameObject;
         canvasManager = FindObjectOfType<CanvasManager>();
@@ -58,7 +63,6 @@ public class EnemyController : MonoBehaviour
             SpawnManager.destroyedEnemyCount++;
             experience.SetActive(true);
             experience.transform.SetParent(null);
-            canvasManager.AddScore(5);
             Destroy(gameObject);
         }
     }
@@ -75,13 +79,19 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         float stopTime = 1.2f;
         Invoke("SpeedProtect", stopTime);
         if (gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
         {
             DealDamage(5);
+            if (!Player.shieldOn)
+            {
+                Rigidbody playerRb = other.gameObject.GetComponent<Rigidbody>();
+                Vector3 forceDirection = (other.gameObject.transform.position - transform.position).normalized;
+                playerRb.AddForce(new Vector3(forceDirection.x, 0, forceDirection.z) * 15f, ForceMode.Impulse);
+            }
         }
         else if (!gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
         {

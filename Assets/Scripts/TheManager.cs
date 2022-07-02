@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using TMPro;
+using UnityEngine.UI;
 
 public class TheManager : MonoBehaviour
 {
@@ -17,9 +18,13 @@ public class TheManager : MonoBehaviour
 
     public AudioClip carribean;
 
+    public Button[] musicButtons;
+
+    private int selectedButtonIndex;
+
     public static string activePlayerName;
 
-    public string bestScoreOwner;
+    public static string bestScoreOwner;
 
     public static int bestScore;
 
@@ -40,6 +45,9 @@ public class TheManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        LoadMusic();
+        audioSource.Play();
+        musicButtons[selectedButtonIndex].Select();
     }
 
 
@@ -52,11 +60,17 @@ public class TheManager : MonoBehaviour
     {
         audioSource.clip = audio;
         audioSource.Play();
+        SaveMusic();
+    }
+
+    public void SaveMusicIndex(int index)
+    {
+        selectedButtonIndex = index;
     }
 
     public void GetPlayerName(TextMeshProUGUI name)
     {
-        activePlayerName = name.text;
+        activePlayerName = name.text.ToString();
     }
 
     [System.Serializable]
@@ -65,9 +79,13 @@ public class TheManager : MonoBehaviour
         public string name;
 
         public int bestScore;
+
+        public AudioClip music;
+
+        public int lastMusicIndex;
     }
 
-    public void SaveNameAndScore(string Name,int BestScore)
+    public void SaveNameAndScore(string Name, int BestScore)
     {
         SaveData data = new SaveData();
         data.name = Name;
@@ -85,8 +103,29 @@ public class TheManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            data.name = bestScoreOwner;
-            data.bestScore = bestScore;
+            bestScoreOwner = data.name;
+            bestScore = data.bestScore;
+        }
+    }
+
+    public void SaveMusic()
+    {
+        SaveData data = new SaveData();
+        data.music = audioSource.clip;
+        data.lastMusicIndex = selectedButtonIndex;
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "savefile2.json", json);
+    }
+
+    public void LoadMusic()
+    {
+        string path = Application.persistentDataPath + "savefile2.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            audioSource.clip = data.music;
+            selectedButtonIndex = data.lastMusicIndex;
         }
     }
 }
