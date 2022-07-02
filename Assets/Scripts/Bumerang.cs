@@ -5,8 +5,11 @@ using UnityEngine;
 public class Bumerang : ProjectileBase
 {
     private float lifeTime = 9;
+
+    private float speed;
     void Start()
     {
+        speed = 3.5f;
         name = "Bumerang";
         damage = 3+(SpawnManager.level);
         GetPlayer();
@@ -22,15 +25,20 @@ public class Bumerang : ProjectileBase
     void Movement()
     {
         lifeTime -= Time.deltaTime;
-        if (lifeTime<=9 && lifeTime>=4.5)
+        if (lifeTime<=9 && lifeTime>=5)
         {
-            transform.position += direction * Time.deltaTime * 3.5f;
+            speed = lifeTime*2 / 2.4f;
+            transform.position += direction * Time.deltaTime * speed;
         }
-        else if (lifeTime<4.5)
+        else if (lifeTime<5)
         {
             GetPlayer();
+            if (speed<=9)
+            {
+                speed = 7 / lifeTime;
+            }
             direction = -(player.transform.position - transform.position).normalized;
-            transform.position -= direction * Time.deltaTime * 3.5f;
+            transform.position -= direction * Time.deltaTime * speed;
         }
         
         transform.Rotate(transform.up, 90 * Time.deltaTime);
