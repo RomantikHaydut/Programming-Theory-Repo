@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CubeController : Player
 {
-    Rigidbody rb;
-    private float jumpForce;
+
     public GameObject hammerPrefab;
     public bool secondHammerPowerup;
     private Transform firstHammer;
@@ -14,10 +13,7 @@ public class CubeController : Player
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         moveSpeed = 3f;
-        jumpForce = 7;
-        shapaName = "Cube";
         secondHammerPowerup = false;
     }
     public override void FireProjectile(GameObject projectile,bool takeChild)
@@ -42,7 +38,6 @@ public class CubeController : Player
     void FixedUpdate()
     {
         Move(transform);
-        Jump(rb, jumpForce);
     }
 
     private void LateUpdate()
