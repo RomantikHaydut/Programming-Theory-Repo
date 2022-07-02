@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BossController : EnemyController
 {
     public GameObject[] cylinders;
@@ -11,6 +12,7 @@ public class BossController : EnemyController
         StartCoroutine(BiggerArms());
         EventsInStart();
     }
+
 
     
     void FixedUpdate()
