@@ -43,9 +43,13 @@ public class Bomb : ProjectileBase
 
         foreach (GameObject enemy in objectsInArea)
         {
-            if (Vector2.Distance(new Vector2(enemy.transform.position.x,enemy.transform.position.z), new Vector2(transform.position.x,transform.position.z)) <= effectRadius*1.2f)
+            if (Vector2.Distance(new Vector2(enemy.transform.position.x,enemy.transform.position.z), new Vector2(transform.position.x,transform.position.z)) <= effectRadius*1.2f )
             {
-                enemy.GetComponent<EnemyController>().health -= damage;
+                if (!enemy.GetComponent<BossController>())
+                {
+                    enemy.GetComponent<EnemyController>().health -= damage;
+
+                }
 
             }
         }

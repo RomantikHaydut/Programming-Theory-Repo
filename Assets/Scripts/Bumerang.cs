@@ -38,7 +38,7 @@ public class Bumerang : ProjectileBase
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && !other.gameObject.GetComponent<BossController>())
         {
             other.gameObject.GetComponent<EnemyController>().health -= (int)damage;
         }
