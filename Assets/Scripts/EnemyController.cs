@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
 
     private GameObject experience;
 
+    private CanvasManager canvasManager;
+
     public static float speed;
 
     public int health;
@@ -24,9 +26,21 @@ public class EnemyController : MonoBehaviour
         health = 5;
         health = (SpawnManager.level*health)+3;
         player = GameObject.FindGameObjectWithTag("Player");
-        speed = 2;
+        if (SpawnManager.level<=10)
+        {
+            speed = 2;
+        }
+        else if (SpawnManager.level>10 && SpawnManager.level<=20)
+        {
+            speed = 3;
+        }
+        else if (SpawnManager.level>20)
+        {
+            speed = 4;
+        }
         ProtectSpawnNearPlayer();
         experience = gameObject.transform.Find("Experience").gameObject;
+        canvasManager = FindObjectOfType<CanvasManager>();
     }
     
     void FixedUpdate()
@@ -44,6 +58,7 @@ public class EnemyController : MonoBehaviour
             SpawnManager.destroyedEnemyCount++;
             experience.SetActive(true);
             experience.transform.SetParent(null);
+            canvasManager.AddScore(5);
             Destroy(gameObject);
         }
     }
@@ -71,6 +86,7 @@ public class EnemyController : MonoBehaviour
         else if (!gameObject.GetComponent<BossController>() && other.gameObject.CompareTag("Player"))
         {
             DealDamage(1);
+            Destroy(gameObject);
         }
 
     }
@@ -84,6 +100,7 @@ public class EnemyController : MonoBehaviour
     protected void DealDamage(int damage)
     {
         Player.playerHealth -= damage;
+        canvasManager.Health();
     }
 
 }
