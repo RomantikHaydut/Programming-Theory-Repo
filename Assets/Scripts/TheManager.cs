@@ -10,7 +10,7 @@ public class TheManager : MonoBehaviour
 {
     public static TheManager theManager;
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     public AudioClip batman;
 
@@ -47,7 +47,10 @@ public class TheManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         LoadMusic();
         audioSource.Play();
-        musicButtons[selectedButtonIndex].Select();
+        if (selectedButtonIndex<=3)
+        {
+            musicButtons[selectedButtonIndex].Select();
+        }
     }
 
 
